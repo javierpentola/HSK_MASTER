@@ -200,24 +200,6 @@ export function NewsContent() {
               <p className="text-sm">Provide feedback on usability and report bugs</p>
             </div>
           </div>
-
-          <div className="text-center">
-            <button
-              className="px-8 py-3 text-lg font-bold uppercase tracking-wider relative inline-block"
-              style={{
-                backgroundColor: BAUHAUS_COLORS.yellow,
-                color: BAUHAUS_COLORS.black,
-                border: `2px solid ${BAUHAUS_COLORS.black}`,
-              }}
-            >
-              <div className="absolute -top-2 -left-2 w-4 h-4" style={{ backgroundColor: BAUHAUS_COLORS.red }}></div>
-              <div
-                className="absolute -bottom-2 -right-2 w-4 h-4"
-                style={{ backgroundColor: BAUHAUS_COLORS.blue }}
-              ></div>
-              <span className="relative z-10">Contact Us to Contribute</span>
-            </button>
-          </div>
         </motion.div>
       </div>
     </motion.div>
