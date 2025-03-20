@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 10% 96%;
+    --foreground: 0 0% 9%;
+
+    --card: 60 10% 96%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 60 10% 96%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 60 10% 96%;
+
+    --secondary: 60 3% 85%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 60 3% 85%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 60 3% 85%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 60 10% 96%;
+
+    --border: 0 0% 9%;
+    --input: 0 0% 9%;
+    --ring: 0 0% 9%;
+
+    --radius: 0rem;
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 60 10% 96%;
+
+    --card: 0 0% 9%;
+    --card-foreground: 60 10% 96%;
+
+    --popover: 0 0% 9%;
+    --popover-foreground: 60 10% 96%;
+
+    --primary: 60 10% 96%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 60 10% 96%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 60 5% 65%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 60 10% 96%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 60 10% 96%;
+
+    --border: 60 10% 96%;
+    --input: 60 10% 96%;
+    --ring: 60 10% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: "Roboto", sans-serif;
+  }
+
+  /* Fuente Bauhaus-inspirada */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .bauhaus-font {
+    @apply font-sans font-bold tracking-wide uppercase;
+    font-family: "Roboto", sans-serif;
+  }
+}
+
+/* Clases de utilidad para elementos Bauhaus */
+@layer components {
+  .bauhaus-circle {
+    @apply rounded-full;
+  }
+
+  .bauhaus-square {
+    @apply rounded-none;
+  }
+
+  .bauhaus-triangle {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .bauhaus-red {
+    @apply bg-red-500;
+  }
+
+  .bauhaus-blue {
+    @apply bg-blue-500;
+  }
+
+  .bauhaus-yellow {
+    @apply bg-yellow-500;
+  }
+
+  .bauhaus-black {
+    @apply bg-black dark:bg-white;
+  }
+
+  .bauhaus-white {
+    @apply bg-white dark:bg-black;
+  }
+
+  /* Card flip animation utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
