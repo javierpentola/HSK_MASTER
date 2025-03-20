@@ -40,6 +40,15 @@ export const HSK_VOCABULARY = [
 // Función para obtener vocabulario por nivel
 export function getVocabularyByLevel(level: number): VocabularyItem[] {
   const levelData = HSK_VOCABULARY.find((l) => l.level === level)
+
+  // Agregar logs para depuración
+  console.log(`Intentando cargar vocabulario para HSK ${level}`)
+  console.log(`Datos encontrados:`, levelData)
+
+  if (!levelData || levelData.words.length === 0) {
+    console.warn(`No se encontró vocabulario para HSK ${level} o está vacío`)
+  }
+
   return levelData?.words || []
 }
 
