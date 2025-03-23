@@ -11,9 +11,9 @@ const roboto = Roboto({
 })
 
 export const metadata = {
-  title: "Chinese Master - Aprende vocabulario chino",
-  description: "Aplicación para aprender vocabulario chino de manera efectiva",
-    generator: 'v0.dev'
+  title: "Chinese Master",
+  description: "",
+    generator: ''
 }
 
 export default function RootLayout({
