@@ -203,7 +203,7 @@ export default function GameContainer() {
       )}
 
       {gameMode === "flashcards" && selectedLevel && <Flashcards level={selectedLevel} onBack={handleBackToGames} />}
-      {gameMode === "quiz" && selectedLevel && <Quiz level={selectedLevel} vocabulary={[]} />}
+      {gameMode === "quiz" && selectedLevel && <Quiz level={selectedLevel} onBack={handleBackToGames} />}
       {gameMode === "matching" && selectedLevel && <Matching level={selectedLevel} onBack={handleBackToGames} />}
       {gameMode === "writing" && selectedLevel && <Writing level={selectedLevel} onBack={handleBackToGames} />}
       {gameMode === "real-exercises" && selectedLevel === 1 && (

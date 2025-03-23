@@ -8,13 +8,18 @@ import { useToast } from "@/components/ui/use-toast"
 import { cn } from "@/lib/utils"
 import { useRouter } from "next/navigation"
 import type { Vocabulary } from "@/lib/types"
+import { getVocabularyByLevel } from "@/lib/vocabulary"
 
+// Modificar la estructura de Props para quitar la dependencia directa en vocabulary
 interface QuizProps {
-  vocabulary: Vocabulary[]
   level: number
+  onBack: () => void
 }
 
-export function Quiz({ vocabulary, level }: QuizProps) {
+// Actualizar la definición de función y agregar manejo de estado para el vocabulario
+export function Quiz({ level, onBack }: QuizProps) {
+  const [vocabulary, setVocabulary] = useState<Vocabulary[]>([])
+  const [loading, setLoading] = useState(true)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
@@ -26,29 +31,55 @@ export function Quiz({ vocabulary, level }: QuizProps) {
   const { toast } = useToast()
   const router = useRouter()
 
-  const currentQuestion = vocabulary[currentQuestionIndex]
+  // Cargar vocabulario cuando el componente se monte
+  useEffect(() => {
+    const loadVocabulary = () => {
+      setLoading(true)
+      try {
+        const vocabData = getVocabularyByLevel(level);
+        // Ensure the data matches the Vocabulary type interface by mapping the required properties
+        const formattedVocabData = vocabData.map(item => ({
+          ...item,
+          english: item.translation || '', // Using only translation property which exists in VocabularyItem
+        }));
+        setVocabulary(formattedVocabData);
+      } catch (error) {
+        console.error("Error loading vocabulary:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-  // Number of questions to ask (limit to 10 or the total number of vocabulary items)
+    loadVocabulary()
+  }, [level])
+
+  // Número de preguntas a hacer (limitar a 10 o el número total de elementos de vocabulario)
   const totalQuestions = Math.min(10, vocabulary.length)
 
+  // Solo intentar acceder a currentQuestion si hay vocabulario disponible
+  const currentQuestion =
+    vocabulary.length > 0 && currentQuestionIndex < vocabulary.length ? vocabulary[currentQuestionIndex] : null
+
   useEffect(() => {
-    if (vocabulary.length > 0) {
+    if (vocabulary.length > 0 && currentQuestion) {
       generateOptions()
     }
   }, [currentQuestionIndex, vocabulary])
 
   useEffect(() => {
-    // Update progress when current question changes
-    setProgress((currentQuestionIndex / totalQuestions) * 100)
+    // Actualiza el progreso cuando cambia la pregunta actual
+    if (totalQuestions > 0) {
+      setProgress((currentQuestionIndex / totalQuestions) * 100)
+    }
   }, [currentQuestionIndex, totalQuestions])
 
   const generateOptions = () => {
     if (!currentQuestion) return
 
-    // Get the correct answer
-    const correctAnswer = currentQuestion.english
+    // Obtener la respuesta correcta
+    const correctAnswer = currentQuestion.english // Using english property from Vocabulary type
 
-    // Get 3 random incorrect answers from the vocabulary
+    // Obtener 3 respuestas incorrectas aleatorias del vocabulario
     const incorrectOptions: string[] = []
     const usedIndices = new Set([currentQuestionIndex])
 
@@ -60,7 +91,7 @@ export function Quiz({ vocabulary, level }: QuizProps) {
       }
     }
 
-    // Combine correct and incorrect options and shuffle
+    // Combinar opciones correctas e incorrectas y mezclar
     const options = [correctAnswer, ...incorrectOptions]
     for (let i = options.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -71,10 +102,10 @@ export function Quiz({ vocabulary, level }: QuizProps) {
   }
 
   const handleOptionClick = (option: string) => {
-    if (isAnswered) return
+    if (isAnswered || !currentQuestion) return
 
     setSelectedOption(option)
-    const correct = option === currentQuestion.english
+    const correct = option === currentQuestion.english // Using english property from Vocabulary type
     setIsCorrect(correct)
     setIsAnswered(true)
 
@@ -82,7 +113,7 @@ export function Quiz({ vocabulary, level }: QuizProps) {
       setScore(score + 1)
     }
 
-    // Simple animation delay before moving to next question
+    // Animación simple antes de pasar a la siguiente pregunta
     setTimeout(() => {
       if (currentQuestionIndex < totalQuestions - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1)
@@ -109,11 +140,19 @@ export function Quiz({ vocabulary, level }: QuizProps) {
     setProgress(0)
   }
 
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full p-4">
+        <p className="text-xl mb-4">Loading vocabulary...</p>
+      </div>
+    )
+  }
+
   if (vocabulary.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-xl mb-4">No vocabulary available for this level.</p>
-        <Button onClick={() => router.push("/")}>Back to Home</Button>
+      <div className="flex flex-col items-center justify-center h-full p-4">
+        <p className="text-xl mb-4">No vocabulary available for HSK {level}.</p>
+        <Button onClick={onBack}>Back to Game Modes</Button>
       </div>
     )
   }
@@ -127,10 +166,20 @@ export function Quiz({ vocabulary, level }: QuizProps) {
         </p>
         <div className="flex gap-4">
           <Button onClick={restartQuiz}>Restart Quiz</Button>
-          <Button onClick={() => router.push("/")} variant="outline">
-            Back to Home
+          <Button onClick={onBack} variant="outline">
+            Back to Games
           </Button>
         </div>
+      </div>
+    )
+  }
+
+  // Protección adicional antes de renderizar el quiz principal
+  if (!currentQuestion) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full p-4">
+        <p className="text-xl mb-4">Error loading quiz questions.</p>
+        <Button onClick={onBack}>Back to Game Modes</Button>
       </div>
     )
   }
@@ -163,7 +212,7 @@ export function Quiz({ vocabulary, level }: QuizProps) {
               "h-auto py-4 px-6 text-left justify-start",
               selectedOption === option && isCorrect && "bg-green-100 border-green-500",
               selectedOption === option && !isCorrect && "bg-red-100 border-red-500",
-              option === currentQuestion.english && isAnswered && "bg-green-100 border-green-500",
+              option === currentQuestion.english && isAnswered && "bg-green-100 border-green-500", // Highlight correct answer when answered
             )}
             onClick={() => handleOptionClick(option)}
             disabled={isAnswered}
