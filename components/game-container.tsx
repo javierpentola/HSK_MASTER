@@ -119,16 +119,6 @@ export default function GameContainer() {
               onClick={() => handleGameSelect("writing")}
               disabled={false}
             />
-            <GameModeCard
-              id="spaced"
-              name="Spaced Repetition"
-              description="Optimize your long-term memory"
-              icon="◯"
-              color={BAUHAUS_COLORS.yellow}
-              onClick={() => handleGameSelect("spaced")}
-              disabled
-              inDevelopment
-            />
             {selectedLevel === 1 && (
               <GameModeCard
                 id="real-exercises"
@@ -213,11 +203,11 @@ export default function GameContainer() {
       )}
 
       {gameMode === "flashcards" && selectedLevel && <Flashcards level={selectedLevel} onBack={handleBackToGames} />}
-      {gameMode === "quiz" && selectedLevel && <Quiz level={selectedLevel} onBack={handleBackToGames} />}
+      {gameMode === "quiz" && selectedLevel && <Quiz level={selectedLevel} vocabulary={[]} />}
       {gameMode === "matching" && selectedLevel && <Matching level={selectedLevel} onBack={handleBackToGames} />}
       {gameMode === "writing" && selectedLevel && <Writing level={selectedLevel} onBack={handleBackToGames} />}
       {gameMode === "real-exercises" && selectedLevel === 1 && (
-        <RealExercises level={selectedLevel} onBack={handleBackToGames} />
+        <RealExercises level={selectedLevel} />
       )}
       {gameMode === "reading-comprehension" && selectedLevel && selectedLevel > 1 && (
         <ReadingComprehension level={selectedLevel} onBack={handleBackToGames} />

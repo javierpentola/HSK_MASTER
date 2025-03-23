@@ -117,8 +117,11 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
 
         <div className="flex justify-center h-16 items-center">
           {/* Logo and name */}
-          <div className="flex items-center absolute left-8">
-            <div className="flex items-center group cursor-pointer" onClick={() => onSectionChange("home")}>
+          <div className="flex items-center w-full justify-start pl-2">
+            <div
+              className="flex items-center group cursor-pointer max-w-[70%] md:max-w-full"
+              onClick={() => onSectionChange("home")}
+            >
               <div className="flex items-center">
                 <div className="relative w-10 h-10 mr-3 transform transition-transform group-hover:rotate-45">
                   <div className="absolute inset-0" style={{ backgroundColor: BAUHAUS_COLORS.black }}></div>
@@ -135,10 +138,13 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xl font-bold tracking-tight uppercase" style={{ color: BAUHAUS_COLORS.black }}>
+                  <span
+                    className="text-base md:text-xl font-bold tracking-tight uppercase truncate"
+                    style={{ color: BAUHAUS_COLORS.black }}
+                  >
                     Chinese Master
                   </span>
-                  <span className="text-xs tracking-widest uppercase" style={{ color: "#666666" }}>
+                  <span className="text-xs tracking-widest uppercase truncate" style={{ color: "#666666" }}>
                     汉语水平考试
                   </span>
                 </div>
@@ -154,7 +160,9 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
             {navItems.map((item, index) => (
               <div
                 key={item.id}
-                ref={(el) => (navItemRefs.current[index] = el)}
+                ref={(el: HTMLDivElement | null): void => {
+                  navItemRefs.current[index] = el;
+                }}
                 className="group relative py-6 cursor-pointer"
                 onClick={() => onSectionChange(item.id)}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -205,7 +213,7 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
           {/* Action buttons - Desktop */}
 
           {/* Menu button - Mobile */}
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center md:hidden absolute right-4">
             <Button
               variant="ghost"
               size="icon"
