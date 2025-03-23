@@ -71,7 +71,7 @@ export function RealExercises({ level }: RealExercisesProps) {
       </div>
 
       {/* Render the appropriate exercise component based on the exercise type */}
-      {'type' in currentExercise && currentExercise.type === "mixed" && (
+      {currentExercise.type === "mixed" && (
         <MixedExercise exercise={currentExercise as MixedExerciseType} onComplete={handleComplete} />
       )}
       {/* Add other exercise type components here when implemented */}

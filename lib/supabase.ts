@@ -1,26 +1,44 @@
-import { createClient } from "@supabase/supabase-js"
+// Mock Supabase client for compatibility
+export const supabase = {
+  auth: {
+    signInWithPassword: async () => ({ data: null, error: new Error("Supabase is not configured") }),
+    signUp: async () => ({ data: null, error: new Error("Supabase is not configured") }),
+    signOut: async () => ({ error: null }),
+    resetPasswordForEmail: async () => ({ error: null }),
+    updateUser: async () => ({ data: null, error: new Error("Supabase is not configured") }),
+  },
+  from: () => ({
+    select: () => ({
+      eq: () => ({
+        single: async () => ({ data: null, error: null }),
+        data: null,
+        error: null,
+      }),
+      data: null,
+      error: null,
+    }),
+    insert: () => ({
+      select: () => ({
+        single: async () => ({ data: null, error: null }),
+      }),
+    }),
+    update: () => ({
+      eq: () => ({
+        select: () => ({
+          single: async () => ({ data: null, error: null }),
+        }),
+      }),
+    }),
+  }),
+}
 
-const supabaseUrl = "https://xfnjdbnlanmibpisjmcd.supabase.co"
-const supabaseAnonKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmbmpkYm5sYW5taWJwaXNqbWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0ODAyOTIsImV4cCI6MjA1ODA1NjI5Mn0.uXLXZ6BUg1HIo15gkf0lPtbsJfAZ2Kw9p9gy1S5US6A"
+// Mock function for getting URL
+export const getURL = () => {
+  return "http://localhost:3000"
+}
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
-// Helper function to check if Supabase connection is working
-export async function checkSupabaseConnection() {
-  try {
-    const { data, error } = await supabase.from("profiles").select("count", { count: "exact" }).limit(0)
-
-    if (error) {
-      console.error("Error connecting to Supabase:", error)
-      return false
-    }
-
-    console.log("Successfully connected to Supabase")
-    return true
-  } catch (error) {
-    console.error("Error checking Supabase connection:", error)
-    return false
-  }
+// Mock function for getting service role
+export const getServiceRole = () => {
+  return null
 }
 

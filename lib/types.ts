@@ -1,7 +1,6 @@
 export interface Vocabulary {
-    hanzi: string
-    pinyin: string
-    english: string
-  }
-  
-  
+  hanzi: string
+  pinyin: string
+  english: string
+}
+
