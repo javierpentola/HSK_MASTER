@@ -18,7 +18,7 @@ interface QuizProps {
   level: number
 }
 
-export default function Quiz({ vocabulary, level }: QuizProps) {
+export function Quiz({ vocabulary, level }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
