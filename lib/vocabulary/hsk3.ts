@@ -686,7 +686,7 @@ export const HSK3_WORDS: [string, string, string][] = [
 ["束", "shù", "beam"],
 ["数量", "shùliàng", "quantity"],
 ["双", "shuāng", "double"],
-["双方", "shuāngfāng", "both sides"],
+["双���", "shuāngfāng", "both sides"],
 ["思想", "sīxiǎng", "thought"],
 ["死", "sǐ", "die"],
 ["速度", "sùdù", "speed"],

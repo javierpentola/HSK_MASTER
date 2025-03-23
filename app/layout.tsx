@@ -11,15 +11,10 @@ const roboto = Roboto({
 })
 
 export const metadata = {
-  title: "HSK Master",
-  description: "",
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
-  },
+  title: "Chinese Master - Aprende vocabulario chino",
+  description: "Aplicación para aprender vocabulario chino de manera efectiva",
+    generator: 'v0.dev'
 }
-
 
 export default function RootLayout({
   children,
@@ -38,3 +33,6 @@ export default function RootLayout({
   )
 }
 
+
+
+import './globals.css'

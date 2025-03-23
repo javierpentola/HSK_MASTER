@@ -36,7 +36,7 @@ export function AboutProject() {
           ></div>
           <h1 className="text-5xl font-bold mb-4 text-black dark:text-white">About the Project</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            HSK Master: a specialized tool for mastering HSK exam vocabulary
+            Chinese Master: a specialized tool for mastering Chinese vocabulary
           </p>
         </motion.div>
 
@@ -50,8 +50,8 @@ export function AboutProject() {
           >
             <h2 className="text-2xl font-bold mb-4 uppercase">Mission</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              HSK Master is designed with a single purpose: to help you effectively memorize the vocabulary required for
-              the HSK (Hanyu Shuiping Kaoshi) exams.
+              Chinese Master is designed with a single purpose: to help you effectively memorize the vocabulary required
+              for the HSK (Hanyu Shuiping Kaoshi) exams.
             </p>
             <p className="text-gray-600 dark:text-gray-300">
               Unlike other applications that try to cover all aspects of Chinese learning, we focus exclusively on

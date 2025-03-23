@@ -405,7 +405,7 @@ export const HSK5_WORDS: [string, string, string][] = [
 ["尽管", "jǐnguǎn", "although"],
 ["紧紧", "jǐn jǐn", "closely; tightly"],
 ["尽可能", "jǐn kě néng", "as much as possible"],
-["进化", "jìnhuà", "evolution"],
+["��化", "jìnhuà", "evolution"],
 ["近来", "jìnlái", "recently"],
 ["经费", "jīngfèi", "funds"],
 ["景象", "jǐng xiàng", "scene; sight"],

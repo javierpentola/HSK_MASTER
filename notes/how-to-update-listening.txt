@@ -1,0 +1,73 @@
+### Guía para añadir más ejercicios de Listening Comprehension
+
+Para añadir más ejercicios de comprensión auditiva a cualquier nivel HSK, sigue estos pasos:
+
+## 1. Crear un nuevo archivo de ejercicio
+
+Para cada nuevo ejercicio, crea un archivo nuevo en la carpeta correspondiente al nivel HSK. Por ejemplo, para añadir un segundo ejercicio a HSK 3:
+
+- Crea un archivo `exercise2.ts` en la carpeta `lib/exercises/listening/hsk3/`
+- Sigue la misma estructura que el archivo `exercise1.ts` existente
+- Asegúrate de cambiar el ID para que sea único (por ejemplo, "hsk3-listening-2")
+- Incluye un título, una URL de audio, la transcripción, la traducción y las preguntas con sus opciones
+
+
+## 2. Actualizar el archivo index.ts del nivel
+
+Después de crear el nuevo archivo de ejercicio, debes actualizar el archivo `index.ts` en la carpeta del nivel correspondiente para importar y exportar el nuevo ejercicio:
+
+1. Abre el archivo `index.ts` en la carpeta del nivel (por ejemplo, `lib/exercises/listening/hsk3/index.ts`)
+2. Importa el nuevo ejercicio (por ejemplo, `import exercise2 from "./exercise2"`)
+3. Añade el nuevo ejercicio al array de ejercicios (por ejemplo, `export const hsk3Exercises: ListeningExercise[] = [exercise1, exercise2]`)
+
+
+## 3. Estructura de un archivo de ejercicio
+
+Cada archivo de ejercicio debe seguir esta estructura:
+
+- **ID**: Un identificador único para el ejercicio
+- **Level**: El nivel HSK (2-6)
+- **Title**: Un título descriptivo para el ejercicio
+- **AudioUrl**: La URL del archivo de audio (puede ser un enlace a un archivo MP3 o similar)
+- **Transcript**: La transcripción del audio en chino
+- **Translation**: La traducción del audio al español
+- **Questions**: Un array de preguntas, cada una con:
+
+- ID: Un identificador único para la pregunta
+- Question: La pregunta en sí
+- Options: Un array de opciones de respuesta
+- CorrectAnswer: El índice de la respuesta correcta (0 para la primera opción, 1 para la segunda, etc.)
+- Explanation: Una explicación de por qué esa es la respuesta correcta
+
+
+
+
+
+## 4. Ejemplo de flujo de trabajo
+
+Para añadir un tercer ejercicio a HSK 4:
+
+1. Crea `lib/exercises/listening/hsk4/exercise3.ts` con el contenido apropiado
+2. Actualiza `lib/exercises/listening/hsk4/index.ts` para importar `exercise3` y añadirlo al array `hsk4Exercises`
+3. No es necesario modificar el archivo `lib/exercises/listening/index.ts` principal, ya que ya está configurado para importar todos los ejercicios de cada nivel
+
+
+## 5. Consideraciones para los archivos de audio
+
+- Asegúrate de que los archivos de audio estén alojados en un servicio accesible públicamente
+- Puedes usar servicios como Google Drive (con enlaces compartidos), Dropbox, o cualquier otro servicio de alojamiento de archivos
+- Para pruebas, puedes usar URLs de ejemplo o sonidos de prueba
+- El formato recomendado es MP3 para mayor compatibilidad
+
+
+## 6. Pruebas
+
+Después de añadir nuevos ejercicios:
+
+1. Verifica que aparezcan en la aplicación cuando seleccionas el nivel correspondiente
+2. Comprueba que el audio se reproduzca correctamente
+3. Verifica que las preguntas y respuestas funcionen como se espera
+
+
+Siguiendo estos pasos, podrás expandir fácilmente la biblioteca de ejercicios de comprensión auditiva para cada nivel HSK en tu aplicación.
+

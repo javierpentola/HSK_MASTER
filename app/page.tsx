@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar"
 import { AboutProject } from "@/components/about-project"
 import { NewsContent } from "@/components/news-content"
 import { SupportContent } from "@/components/support-content"
-import { GameContainer } from "@/components/game-container"
+import GameContainer from "@/components/game-container"
 
 // Bauhaus color palette
 export const BAUHAUS_COLORS = {
@@ -52,7 +52,7 @@ export default function HomePage() {
                     className="text-6xl font-bold mb-2 relative z-10 uppercase tracking-tight"
                     style={{ color: BAUHAUS_COLORS.black }}
                   >
-                    HSK <span style={{ color: BAUHAUS_COLORS.red }}>Master</span>
+                    Chinese <span style={{ color: BAUHAUS_COLORS.red }}>Master</span>
                   </h1>
 
                   <div className="w-20 h-1 mb-4" style={{ backgroundColor: BAUHAUS_COLORS.black }}></div>

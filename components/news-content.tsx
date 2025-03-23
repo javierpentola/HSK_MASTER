@@ -32,7 +32,7 @@ export function NewsContent() {
             Project News
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
-            Updates and development roadmap for HSK Master
+            Updates and development roadmap for Chinese Master
           </p>
         </motion.div>
 
@@ -57,8 +57,9 @@ export function NewsContent() {
           </h2>
 
           <p className="text-lg mb-6">
-            Welcome to the beta version of HSK Master! This application is currently in its early stages of development,
-            offering basic functionality to help you learn Chinese vocabulary through various interactive game modes.
+            Welcome to the beta version of Chinese Master! This application is currently in its early stages of
+            development, offering basic functionality to help you learn Chinese vocabulary through various interactive
+            game modes.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -182,8 +183,9 @@ export function NewsContent() {
           <h2 className="text-3xl font-bold mb-6 uppercase tracking-wide">Get Involved</h2>
 
           <p className="text-lg mb-6">
-            HSK Master is an open project, and we welcome contributions from the community! Whether you're a developer,
-            designer, Chinese language teacher, or enthusiastic learner, your help would be greatly appreciated.
+            Chinese Master is an open project, and we welcome contributions from the community! Whether you're a
+            developer, designer, Chinese language teacher, or enthusiastic learner, your help would be greatly
+            appreciated.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">

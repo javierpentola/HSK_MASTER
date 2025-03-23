@@ -392,7 +392,7 @@ export const HSK4_WORDS: [string, string, string][] = [
 ["奖学金", "jiǎng xué jīn", "scholarship; fellowship"],
 ["降", "jiàng", "fall; drop; descend; come down; lower"],
 ["降低", "jiàngdī", "reduce"],
-["降价", "jiàng jià", "cut price; reduce price"],
+["降价", "jiàng��jià", "cut price; reduce price"],
 ["降落", "jiàngluò", "land"],
 ["降温", "jiàng wēn", "lower the temperature; drop in temperature"],
 ["交换", "jiāohuàn", "exchange"],

@@ -1,0 +1,145 @@
+=======================================================
+GUÍA PARA ACTUALIZAR EJERCICIOS DE ESCRITURA EN HSK MASTER
+=======================================================
+
+Esta guía explica cómo añadir, modificar y gestionar los ejercicios de escritura
+en la aplicación HSK Master.
+
+-----------------------
+1. ESTRUCTURA DE ARCHIVOS
+-----------------------
+
+Los ejercicios de escritura se organizan de la siguiente manera:
+
+/lib
+  /exercises
+    /writing
+      /hsk2
+        exercise1.ts
+        exercise2.ts
+        index.ts
+      /hsk3
+        ...
+      index.ts
+    /types.ts
+
+-----------------------
+2. CÓMO AÑADIR UN NUEVO EJERCICIO
+-----------------------
+
+Para añadir un nuevo ejercicio, sigue estos pasos:
+
+a) Crea un nuevo archivo en la carpeta del nivel HSK correspondiente
+   Ejemplo: lib/exercises/writing/hsk2/exercise3.ts
+
+b) Utiliza esta estructura para el nuevo ejercicio:
+
+   import type { WritingExercise } from "../../types"
+
+   const exercise3: WritingExercise = {
+     id: "writing-hsk2-3",  // ID único (importante)
+     level: 2,              // Nivel HSK (2-6)
+     question: "你的周末做什么？",  // Pregunta en chino
+     translation: "¿Qué haces en tu fin de semana?",  // Traducción
+     sampleAnswer: "我的周末通常很忙。我喜欢和朋友一起去公园，或者在家看书。",  // Respuesta ejemplo
+     minChars: 10,          // Mínimo de caracteres requeridos
+     maxChars: 50,          // Máximo de caracteres permitidos
+     suggestedVocabulary: [
+       { word: "周末", translation: "fin de semana" },
+       { word: "朋友", translation: "amigo" },
+       { word: "公园", translation: "parque" },
+       // Añade más vocabulario sugerido
+     ],
+   }
+
+   export default exercise3
+
+c) Actualiza el archivo index.ts del nivel correspondiente:
+
+   import type { WritingExercise } from "../../types"
+   import exercise1 from "./exercise1"
+   import exercise2 from "./exercise2"
+   import exercise3 from "./exercise3"  // Importa el nuevo ejercicio
+
+   export const hsk2Exercises: WritingExercise[] = [
+     exercise1, 
+     exercise2,
+     exercise3  // Añade el nuevo ejercicio al array
+   ]
+
+-----------------------
+3. CÓMO MODIFICAR UN EJERCICIO EXISTENTE
+-----------------------
+
+Para modificar un ejercicio existente, simplemente abre el archivo correspondiente
+y actualiza los campos necesarios. Asegúrate de mantener la estructura del objeto.
+
+-----------------------
+4. CONSIDERACIONES IMPORTANTES
+-----------------------
+
+a) IDs únicos: Asegúrate de que cada ejercicio tenga un ID único. Se recomienda
+   seguir el formato "writing-hskX-Y" donde X es el nivel HSK y Y es el número
+   de ejercicio.
+
+b) Niveles HSK: Los niveles válidos son del 2 al 6. El nivel 1 no tiene ejercicios
+   de escritura.
+
+c) Longitud de respuesta: Establece valores razonables para minChars y maxChars
+   según la dificultad del ejercicio y el nivel HSK.
+
+d) Vocabulario sugerido: Incluye palabras relevantes para el ejercicio que ayuden
+   al estudiante a formular su respuesta.
+
+-----------------------
+5. ORGANIZACIÓN PARA MUCHOS EJERCICIOS
+-----------------------
+
+Si planeas añadir muchos ejercicios (más de 20-30 por nivel), considera:
+
+a) Agrupar por temas:
+   /hsk2
+     /daily-life
+       exercise1.ts
+       exercise2.ts
+     /food
+       exercise1.ts
+       ...
+     index.ts
+
+b) En este caso, actualiza el index.ts para importar desde las subcarpetas:
+
+   import dailyLife1 from "./daily-life/exercise1"
+   import dailyLife2 from "./daily-life/exercise2"
+   import food1 from "./food/exercise1"
+   
+   export const hsk2Exercises = [dailyLife1, dailyLife2, food1]
+
+-----------------------
+6. EJEMPLO COMPLETO DE UN EJERCICIO
+-----------------------
+
+import type { WritingExercise } from "../../types"
+
+const exercise: WritingExercise = {
+  id: "writing-hsk2-4",
+  level: 2,
+  question: "你最喜欢的食物是什么？为什么？",
+  translation: "¿Cuál es tu comida favorita? ¿Por qué?",
+  sampleAnswer: "我最喜欢的食物是饺子。因为饺子很好吃，而且可以有不同的馅儿。我妈妈做的饺子最好吃。",
+  minChars: 15,
+  maxChars: 60,
+  suggestedVocabulary: [
+    { word: "最喜欢", translation: "favorito" },
+    { word: "食物", translation: "comida" },
+    { word: "因为", translation: "porque" },
+    { word: "好吃", translation: "delicioso" },
+    { word: "饺子", translation: "dumpling" },
+    { word: "馅儿", translation: "relleno" },
+  ],
+}
+
+export default exercise
+
+=======================================================
+

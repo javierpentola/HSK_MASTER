@@ -25,7 +25,7 @@ export function SupportContent() {
   }
 
   const shareOnTwitter = () => {
-    const text = "I'm learning Chinese with HSK Master! An amazing app for mastering HSK vocabulary."
+    const text = "I'm learning Chinese with Chinese Master! An amazing app for mastering Chinese vocabulary."
     const url = window.location.href
     window.open(
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
@@ -56,7 +56,7 @@ export function SupportContent() {
           <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-red-500 rounded-full opacity-10"></div>
           <h1 className="text-5xl font-bold mb-4 text-black dark:text-white">Support the Project</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            HSK Master is an independent project created with passion to help Mandarin Chinese students.
+            Chinese Master is an independent project created with passion to help Mandarin Chinese students.
           </p>
         </motion.div>
 
@@ -75,7 +75,7 @@ export function SupportContent() {
             </div>
             <h3 className="text-xl font-bold mb-3 uppercase">Share</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              Share HSK Master with other Chinese students. Your recommendation is the best support.
+              Share Chinese Master with other Chinese students. Your recommendation is the best support.
             </p>
 
             <div className="grid grid-cols-2 gap-2 mb-4">
@@ -123,7 +123,7 @@ export function SupportContent() {
               <div className="flex items-center justify-center">
                 <Share2 className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" />
                 <span className="text-sm text-gray-500 dark:text-gray-400">
-                  Sharing helps more people discover HSK Master
+                  Sharing helps more people discover Chinese Master
                 </span>
               </div>
             </div>

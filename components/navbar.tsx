@@ -1,10 +1,9 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Menu, X, User } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/hooks/use-toast"
 
 // Bauhaus color palette
 const BAUHAUS_COLORS = {
@@ -24,7 +23,6 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [indicatorStyle, setIndicatorStyle] = useState({})
-  const { toast } = useToast()
   const navItemRefs = useRef<Array<HTMLDivElement | null>>([])
 
   const navItems = [
@@ -90,14 +88,6 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
     }
   }
 
-  const handleAccountClick = () => {
-    toast({
-      title: "Feature in development",
-      description: "Not available yet, we're working on implementing the spaced repetition mode 🙏",
-      duration: 5000,
-    })
-  }
-
   return (
     <nav
       className={cn("fixed top-0 left-0 right-0 z-50 border-b-2", "transition-colors duration-300")}
@@ -125,9 +115,9 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
           style={{ backgroundColor: BAUHAUS_COLORS.blue }}
         ></div>
 
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-center h-16 items-center">
           {/* Logo and name */}
-          <div className="flex items-center">
+          <div className="flex items-center absolute left-8">
             <div className="flex items-center group cursor-pointer" onClick={() => onSectionChange("home")}>
               <div className="flex items-center">
                 <div className="relative w-10 h-10 mr-3 transform transition-transform group-hover:rotate-45">
@@ -146,7 +136,7 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xl font-bold tracking-tight uppercase" style={{ color: BAUHAUS_COLORS.black }}>
-                    HSK Master
+                    Chinese Master
                   </span>
                   <span className="text-xs tracking-widest uppercase" style={{ color: "#666666" }}>
                     汉语水平考试
@@ -157,7 +147,7 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
           </div>
 
           {/* Navigation links - Desktop */}
-          <div className="hidden md:flex md:items-center md:space-x-8 relative">
+          <div className="hidden md:flex md:items-center md:space-x-8 relative mx-auto">
             {/* Active indicator with animation */}
             <div className="absolute bottom-3 h-0.5 transition-all duration-300 ease-out" style={indicatorStyle}></div>
 
@@ -213,19 +203,6 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
           </div>
 
           {/* Action buttons - Desktop */}
-          <div className="hidden md:flex md:items-center md:space-x-4">
-            <Button
-              className="rounded-none uppercase tracking-wider text-xs font-bold px-4 py-2 h-9 hover:bg-opacity-90"
-              style={{
-                backgroundColor: BAUHAUS_COLORS.black,
-                color: BAUHAUS_COLORS.white,
-              }}
-              onClick={handleAccountClick}
-            >
-              <User className="h-4 w-4 mr-2" />
-              <span>My Account</span>
-            </Button>
-          </div>
 
           {/* Menu button - Mobile */}
           <div className="flex items-center md:hidden">
@@ -303,20 +280,6 @@ export function Navbar({ activeSection, onSectionChange }: NavbarProps) {
                 )}
               </div>
             ))}
-            <Button
-              className="w-full mt-4 rounded-none uppercase tracking-wider text-xs font-bold py-3"
-              style={{
-                backgroundColor: BAUHAUS_COLORS.black,
-                color: BAUHAUS_COLORS.white,
-              }}
-              onClick={() => {
-                handleAccountClick()
-                setIsMenuOpen(false)
-              }}
-            >
-              <User className="h-4 w-4 mr-2" />
-              <span>My Account</span>
-            </Button>
           </div>
         </div>
       )}
